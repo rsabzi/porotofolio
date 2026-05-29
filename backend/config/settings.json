@@ -1,0 +1,31 @@
+{
+  "monitored_folders": [],
+  "auto_organize": true,
+  "duplicate_scan_frequency_minutes": 60,
+  "theme": "dark",
+  "notifications_enabled": true,
+  "organize_root": null,
+  "max_file_size_large_mb": 100,
+  "category_map": {
+    "Images": [".gif", ".heic", ".jpeg", ".jpg", ".png", ".svg", ".tiff", ".webp"],
+    "Videos": [".avi", ".m4v", ".mkv", ".mov", ".mp4", ".webm"],
+    "Documents": [".csv", ".doc", ".docx", ".md", ".pdf", ".ppt", ".pptx", ".rtf", ".txt", ".xls", ".xlsx"],
+    "Archives": [".7z", ".bz2", ".gz", ".rar", ".tar", ".zip"],
+    "Audio": [".aac", ".flac", ".m4a", ".mp3", ".ogg", ".wav"],
+    "Code": [".c", ".cpp", ".css", ".go", ".html", ".java", ".js", ".json", ".jsx", ".lock", ".py", ".rs", ".toml", ".ts", ".tsx", ".yaml", ".yml"],
+    "Installers": [".apk", ".appimage", ".deb", ".dmg", ".exe", ".msi", ".pkg", ".rpm"]
+  },
+  "safety": {
+    "dry_run": false,
+    "recursive_watch": false,
+    "min_file_age_seconds": 3,
+    "skip_hidden_files": true,
+    "skip_code_projects": true,
+    "allow_code_file_organization": false,
+    "allow_installer_organization": false,
+    "require_delete_confirmation": true,
+    "protected_folder_markers": [".git", ".hg", ".svn", "package.json", "pnpm-lock.yaml", "yarn.lock", "package-lock.json", "pyproject.toml", "requirements.txt", "Pipfile", "poetry.lock", "Cargo.toml", "go.mod", "composer.json", ".csproj", ".sln", "Gemfile", "Makefile", "CMakeLists.txt"],
+    "protected_path_segments": ["node_modules", ".venv", "venv", "env", "__pycache__", ".next", "dist", "build", "target", "site-packages", "Program Files", "Program Files (x86)", "Windows", "System32", "Applications", ".Trash"],
+    "ignored_globs": ["*.tmp", "*.crdownload", "*.part", "~$*", ".DS_Store"]
+  }
+}
