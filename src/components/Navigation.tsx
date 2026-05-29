@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
   { label: 'خانه', href: '#home' },
-  { label: 'درباره', href: '#about' },
-  { label: 'پروژه‌ها', href: '#projects' },
+  { label: 'خدمات', href: '#services' },
+  { label: 'نمونه‌کار', href: '#projects' },
   { label: 'مهارت‌ها', href: '#skills' },
-  { label: 'آزمایشگاه', href: '#lab' },
+  { label: 'فرآیند', href: '#process' },
   { label: 'تماس', href: '#contact' },
 ];
 
@@ -111,7 +111,7 @@ export default function Navigation() {
                 color: '#22d3ee',
               }}
             >
-              بیایید بسازیم
+              شروع همکاری
             </button>
           </div>
 
