@@ -44,20 +44,19 @@ export default function Contact() {
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
         >
-          <motion.p className="section-label mb-4" variants={itemAnim}>تماس بگیرید</motion.p>
+          <motion.p className="section-label mb-4" variants={itemAnim}>شروع همکاری</motion.p>
           <motion.h2
             className="font-display font-bold mb-6"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
             variants={itemAnim}
           >
-            <span className="gradient-text-white">بیایید سیستم‌های </span>
+            <span className="gradient-text-white">برای پروژه بعدی، </span>
             <span className="gradient-text-cyan glow-cyan">هوشمند</span>
             <br />
-            <span className="gradient-text-white">را با هم بسازیم.</span>
+            <span className="gradient-text-white">یک مسیر روشن بسازیم.</span>
           </motion.h2>
           <motion.p className="text-base max-w-lg mx-auto" style={{ color: '#475569' }} variants={itemAnim}>
-            سیستمی پیچیده برای معماری دارید؟ چالش اتوماسیون؟ دیدگاهی که نیاز به مهندسی دارد؟
-            آماده‌ام آن را بسازم.
+            چند خط درباره هدف، مخاطب و نتیجه‌ای که می‌خواهید بنویسید. پاسخ اولیه شامل پیشنهاد مسیر، ریسک‌ها و قدم بعدی خواهد بود.
           </motion.p>
         </motion.div>
 
@@ -76,9 +75,9 @@ export default function Contact() {
                   >
                     <Send size={24} style={{ color: '#22d3ee' }} />
                   </div>
-                  <h3 className="font-display font-semibold text-xl text-white mb-3">پیام دریافت شد</h3>
+                  <h3 className="font-display font-semibold text-xl text-white mb-3">درخواست شما ثبت شد</h3>
                   <p className="text-sm" style={{ color: '#475569' }}>
-                    پروژه شما را بررسی می‌کنم و ظرف ۲۴ ساعت پاسخ می‌دهم.
+                    جزئیات را بررسی می‌کنم و حداکثر تا ۲۴ ساعت آینده با پیشنهاد قدم بعدی پاسخ می‌دهم.
                   </p>
                 </div>
               ) : (
@@ -135,7 +134,7 @@ export default function Contact() {
                   <div>
                     <label className="section-label block mb-2" style={{ fontSize: '0.62rem' }}>پیام</label>
                     <textarea
-                      placeholder="نیازمندی‌های سیستم، اهداف و زمان‌بندی پروژه خود را شرح دهید..."
+                      placeholder="مثلاً: چه می‌فروشید، مخاطب کیست، مشکل اصلی چیست و از سایت/سیستم چه نتیجه‌ای می‌خواهید؟"
                       value={formState.message}
                       onChange={e => setFormState(s => ({ ...s, message: e.target.value }))}
                       required
@@ -162,7 +161,7 @@ export default function Contact() {
                     }}
                   >
                     <Send size={16} />
-                    ارسال پیام
+                    ارسال درخواست بررسی
                   </button>
                 </form>
               )}
@@ -184,11 +183,10 @@ export default function Contact() {
                 <p className="section-label">در حال حاضر در دسترس</p>
               </div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: '#64748b' }}>
-                آماده پروژه‌های جدید — سیستم‌های اتوماسیون، زیرساخت هوش مصنوعی، معماری بک‌اند
-                و طراحی سیستم‌های پیچیده. مشتریان ریموت و بین‌المللی خوش‌آمد هستند.
+                آماده همکاری برای سایت‌های فروش‌محور، MVPهای هوشمند، اتوماسیون فرایند و داشبوردهای مدیریتی. اگر پروژه هنوز خام است، از تحلیل و نقشه راه شروع می‌کنیم.
               </p>
               <div className="flex flex-wrap gap-2">
-                {['ریموت', 'قراردادی', 'بلندمدت', 'پروژه‌ای'].map(tag => (
+                {['تحلیل اولیه', 'طراحی UX', 'توسعه MVP', 'اتوماسیون AI'].map(tag => (
                   <span key={tag} className="tech-tag">{tag}</span>
                 ))}
               </div>

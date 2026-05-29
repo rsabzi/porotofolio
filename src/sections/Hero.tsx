@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import ParticleCanvas from '../components/ParticleCanvas';
 
 const TYPING_PHRASES = [
-  'سیستم‌های اتوماسیون هوشمند',
-  'زیرساخت مبتنی بر هوش مصنوعی',
-  'معماری ربات مقیاس‌پذیر',
-  'موتورهای هماهنگی ناهمگام',
+  'سایت‌های مشتری‌ساز',
+  'اتوماسیون فروش و عملیات',
+  'محصولات هوشمند با AI',
+  'داشبوردهای مدیریتی دقیق',
 ];
 
 function useTypewriter(phrases: string[]) {
@@ -99,7 +99,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.23, 1, 0.32, 1] as [number,number,number,number] }}
         >
-          <span className="gradient-text-white">معماری</span>
+          <span className="gradient-text-white">طراحی و ساخت</span>
         </motion.h1>
 
         <motion.div
@@ -125,8 +125,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
         >
-          من کد نمی‌نویسم — سیستم‌های هوشمند مهندسی می‌کنم. از ربات‌های مستقل تا هماهنگی مبتنی بر هوش مصنوعی،
-          زیرساختی می‌سازم که فکر می‌کند، مقیاس‌پذیر است و انطباق‌پذیر.
+          برای کسب‌وکارهایی که فقط یک ظاهر قشنگ نمی‌خواهند؛ یک سایت یا سیستم می‌خواهند که اعتماد بسازد،
+          لید بگیرد، فروش را ساده کند و عملیات تکراری را با هوش مصنوعی خودکار کند.
         </motion.p>
 
         <motion.div
@@ -136,7 +136,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.85 }}
         >
           <button
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             style={{
               background: 'linear-gradient(135deg, #06b6d4, #0ea5e9)',
@@ -144,21 +144,21 @@ export default function Hero() {
               boxShadow: '0 0 30px rgba(6,182,212,0.3)',
             }}
           >
-            مشاهده پروژه‌ها
+            می‌خواهم مشتری بگیرم
           </button>
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 glass gradient-border"
             style={{ color: '#22d3ee' }}
           >
-            تماس با من
+            مشاوره سریع پروژه
           </button>
           <button
-            onClick={() => document.getElementById('lab')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('process')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105"
             style={{ color: '#475569', border: '1px solid #1e1e2e' }}
           >
-            کاوش در سیستم‌ها ←
+            فرآیند همکاری ←
           </button>
         </motion.div>
 
@@ -169,10 +169,10 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 1.1 }}
         >
           {[
-            { value: '۵۰+', label: 'سیستم ساخته‌شده' },
-            { value: '۱۲+', label: 'ابزار هوش مصنوعی' },
-            { value: '۵سال', label: 'مهندسی' },
-            { value: '۹۹%', label: 'هدف آپتایم' },
+            { value: '۴۸ساعته', label: 'تحلیل اولیه' },
+            { value: 'MVP', label: 'تحویل مرحله‌ای' },
+            { value: 'SEO', label: 'ساختار آماده رشد' },
+            { value: 'AI', label: 'اتوماسیون هوشمند' },
           ].map(stat => (
             <div key={stat.label} className="text-center">
               <div className="font-display font-bold text-2xl gradient-text-cyan">{stat.value}</div>

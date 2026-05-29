@@ -4,11 +4,24 @@ export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
+  const [enabled, setEnabled] = useState(false);
   const pos = useRef({ x: 0, y: 0 });
   const ring = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const updateEnabled = () => setEnabled(mediaQuery.matches);
+
+    updateEnabled();
+    mediaQuery.addEventListener('change', updateEnabled);
+
+    return () => mediaQuery.removeEventListener('change', updateEnabled);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
     const onMove = (e: MouseEvent) => {
       pos.current = { x: e.clientX, y: e.clientY };
     };
@@ -46,7 +59,9 @@ export default function CustomCursor() {
       document.removeEventListener('mouseout', onLeave);
       cancelAnimationFrame(rafRef.current);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <>

@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const loadingLines = [
+  'در حال راه‌اندازی سیستم‌ها...',
+  'بارگذاری معماری...',
+  'کالیبراسیون ماژول‌های هوش مصنوعی...',
+  'بوت رابط کنترل...',
+];
+
 export default function LoadingScreen() {
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
-  const lines = [
-    'در حال راه‌اندازی سیستم‌ها...',
-    'بارگذاری معماری...',
-    'کالیبراسیون ماژول‌های هوش مصنوعی...',
-    'بوت رابط کنترل...',
-  ];
   const [lineIdx, setLineIdx] = useState(0);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function LoadingScreen() {
     }, 180);
 
     const lineTimer = setInterval(() => {
-      setLineIdx(i => Math.min(i + 1, lines.length - 1));
+      setLineIdx(i => Math.min(i + 1, loadingLines.length - 1));
     }, 700);
 
     return () => { clearInterval(timer); clearInterval(lineTimer); };
@@ -67,7 +68,7 @@ export default function LoadingScreen() {
             </div>
 
             <div className="terminal-text text-left w-72 space-y-1" style={{ direction: 'rtl', textAlign: 'right' }}>
-              {lines.slice(0, lineIdx + 1).map((line, i) => (
+              {loadingLines.slice(0, lineIdx + 1).map((line, i) => (
                 <motion.p
                   key={i}
                   initial={{ opacity: 0, x: 10 }}
