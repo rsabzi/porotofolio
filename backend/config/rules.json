@@ -1,0 +1,25 @@
+{
+  "rules": [
+    {
+      "id": "archives",
+      "name": "Archives",
+      "enabled": true,
+      "condition": { "extension": ".zip" },
+      "action": { "type": "move", "move_to": "Archives" }
+    },
+    {
+      "id": "pdf-documents",
+      "name": "PDF Documents",
+      "enabled": true,
+      "condition": { "extension": ".pdf" },
+      "action": { "type": "move", "move_to": "Documents" }
+    },
+    {
+      "id": "python-code",
+      "name": "Python Code",
+      "enabled": true,
+      "condition": { "extension": ".py" },
+      "action": { "type": "move", "move_to": "Code" }
+    }
+  ]
+}

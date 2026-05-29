@@ -1,32 +1,18 @@
 from fastapi.testclient import TestClient
 
-from backend.app.core.config import CONFIG_PATH
-from backend.app.main import app
+from backend.main import app
 
 
-def test_grid_response_shape():
+def test_api_health_and_settings():
     with TestClient(app) as client:
-        response = client.get("/grid")
-        assert response.status_code == 200
-        payload = response.json()
-        assert "size" in payload
-        assert "buildings" in payload
-        assert "heatmap" in payload
+        assert client.get("/api/health").status_code == 200
+        settings = client.get("/api/settings")
+        assert settings.status_code == 200
+        assert "monitored_folders" in settings.json()
 
 
-def test_agents_response_contains_three_agents():
+def test_api_rules_response():
     with TestClient(app) as client:
-        response = client.get("/agents")
+        response = client.get("/api/rules")
         assert response.status_code == 200
-        assert len(response.json()) == 3
-
-
-def test_config_update_weights():
-    original = CONFIG_PATH.read_text()
-    try:
-        with TestClient(app) as client:
-            response = client.post("/config/update", json={"weights": {"accessibility": 0.6, "resources": 0.25, "pollution": 0.15}})
-            assert response.status_code == 200
-            assert response.json()["config"]["weights"]["accessibility"] == 0.6
-    finally:
-        CONFIG_PATH.write_text(original)
+        assert isinstance(response.json(), list)
