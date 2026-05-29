@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import BaseModel
 
-from backend.app.core.settings import Settings
+from backend.app.core.settings import SafetySettings, Settings
 from backend.app.rules.models import RuleAction, RuleCondition
 
 
@@ -16,10 +16,15 @@ class SettingsPatch(BaseModel):
     notifications_enabled: bool | None = None
     organize_root: str | None = None
     max_file_size_large_mb: int | None = None
+    category_map: dict[str, list[str]] | None = None
+    safety: SafetySettings | None = None
 
     def apply(self, settings: Settings) -> Settings:
         data = settings.model_dump()
-        data.update(self.model_dump(exclude_none=True))
+        patch = self.model_dump(exclude_none=True)
+        if "safety" in patch:
+            data["safety"] = {**data["safety"], **patch.pop("safety")}
+        data.update(patch)
         return Settings.model_validate(data)
 
 
@@ -32,6 +37,7 @@ class RuleCreate(BaseModel):
 class ResolveDuplicatesRequest(BaseModel):
     files: list[str]
     strategy: Literal["delete", "keep_newest", "keep_largest"]
+    confirmed: bool = False
 
 
 class RollbackRequest(BaseModel):

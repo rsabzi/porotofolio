@@ -53,7 +53,7 @@ class WatcherManager:
         if key in self.watched:
             return
         handler = AsyncWatchdogHandler(self.loop or asyncio.get_event_loop(), self._handle_event)
-        self.observer.schedule(handler, key, recursive=False)
+        self.observer.schedule(handler, key, recursive=self.organizer.settings.safety.recursive_watch)
         self.watched.add(key)
 
     def _handle_event(self, event: FileSystemEvent) -> None:

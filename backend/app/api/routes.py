@@ -52,6 +52,10 @@ def create_router(state: AppState) -> APIRouter:
         state.rules.delete_rule(rule_id)
         return {"ok": True}
 
+    @router.get("/organize/preview")
+    def preview(path: str) -> dict:
+        return state.organizer.preview_file(Path(path))
+
     @router.post("/organize")
     async def organize(path: str) -> dict:
         try:
@@ -66,7 +70,7 @@ def create_router(state: AppState) -> APIRouter:
 
     @router.post("/duplicates/resolve")
     async def resolve_duplicates(payload: ResolveDuplicatesRequest) -> dict:
-        deleted = await state.duplicates.resolve([Path(path) for path in payload.files], payload.strategy)
+        deleted = await state.duplicates.resolve([Path(path) for path in payload.files], payload.strategy, state.settings, payload.confirmed)
         return {"ok": True, "deleted": deleted}
 
     @router.get("/history")

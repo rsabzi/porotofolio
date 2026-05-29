@@ -16,3 +16,15 @@ def test_api_rules_response():
         response = client.get("/api/rules")
         assert response.status_code == 200
         assert isinstance(response.json(), list)
+
+
+def test_api_preview_protects_code_file(tmp_path):
+    project = tmp_path / "project"
+    project.mkdir()
+    (project / "package.json").write_text("{}")
+    file = project / "index.js"
+    file.write_text("console.log('safe')")
+    with TestClient(app) as client:
+        response = client.get("/api/organize/preview", params={"path": str(file)})
+        assert response.status_code == 200
+        assert response.json()["allowed"] is False

@@ -13,6 +13,20 @@ export type ActivityEvent = {
   count?: number;
 };
 
+export type SafetySettings = {
+  dry_run: boolean;
+  recursive_watch: boolean;
+  min_file_age_seconds: number;
+  skip_hidden_files: boolean;
+  skip_code_projects: boolean;
+  allow_code_file_organization: boolean;
+  allow_installer_organization: boolean;
+  require_delete_confirmation: boolean;
+  protected_folder_markers: string[];
+  protected_path_segments: string[];
+  ignored_globs: string[];
+};
+
 export type Settings = {
   monitored_folders: string[];
   auto_organize: boolean;
@@ -21,6 +35,8 @@ export type Settings = {
   notifications_enabled: boolean;
   organize_root?: string | null;
   max_file_size_large_mb: number;
+  category_map: Record<string, string[]>;
+  safety: SafetySettings;
 };
 
 export type Rule = {

@@ -6,7 +6,7 @@ export function DuplicateManager() {
   const setDuplicates = useAppStore((state) => state.setDuplicates);
   const scan = async () => setDuplicates(await api<DuplicateGroup[]>('/duplicates'));
   const resolve = async (group: DuplicateGroup, strategy: string) => {
-    await api('/duplicates/resolve', { method: 'POST', body: JSON.stringify({ files: group.files.map((file) => file.path), strategy }) });
+    await api('/duplicates/resolve', { method: 'POST', body: JSON.stringify({ files: group.files.map((file) => file.path), strategy, confirmed: true }) });
     await scan();
   };
   return (

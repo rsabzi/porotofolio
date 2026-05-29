@@ -30,7 +30,7 @@ class AppState:
 
     async def scan_duplicates(self) -> list[dict]:
         folders = [Path(folder) for folder in self.settings.monitored_folders]
-        duplicates = await self.duplicates.scan(folders)
+        duplicates = await self.duplicates.scan(folders, self.settings)
         for duplicate in duplicates:
             await self.bus.publish({"type": "DUPLICATE_ALERT", **duplicate})
         return duplicates

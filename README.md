@@ -10,6 +10,8 @@ A production-oriented desktop application that monitors folders in real time, or
 - JSON-backed custom rule engine with extension, size, filename, date, and MIME/file-type conditions.
 - SHA256 duplicate detection with keep-newest / keep-largest / delete resolution strategies.
 - Transaction-like safe moves with collision-safe renaming and rollback history.
+- Safety guard that skips programming projects, dependency folders, hidden/temp files, installers/apps, and code files by default.
+- Professional settings for category maps, dry-run mode, recursive watching, protected path segments, project markers, ignored globs, duplicate confirmation, timings, and destinations.
 - Activity logs for moves, rule triggers, duplicate alerts, rollback events, and errors.
 - Electron desktop app with React, TailwindCSS, Zustand, and Framer Motion.
 - Local-first optional AI direction: natural-language rule generation can be added without cloud APIs by extending the rule engine.
@@ -141,6 +143,9 @@ Coverage areas include rule engine behavior, duplicate detection, rollback suppo
 
 ## Security model
 
+- Programming projects are detected by markers such as `.git`, `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, lockfiles, and build/dependency folders.
+- Code files and installer/application packages are protected by default and require explicit settings changes before they can be organized.
+- Dry-run mode lets users preview moves without touching the filesystem.
 - Path inputs are resolved and validated before file operations.
 - Move collisions are auto-renamed; existing files are not overwritten.
 - Rollback history is stored as JSONL transaction records.

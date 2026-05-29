@@ -6,6 +6,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from backend.app.core.paths import RULES_PATH
+from backend.app.core.settings import DEFAULT_CATEGORY_MAP
 from backend.app.rules.models import Rule, RuleAction, RuleCondition
 from backend.app.utils.json_store import read_json, write_json
 
@@ -17,15 +18,8 @@ DEFAULT_RULES = {
     ]
 }
 
-CATEGORY_EXTENSIONS = {
-    "Images": {".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".heic"},
-    "Videos": {".mp4", ".mov", ".avi", ".mkv", ".webm"},
-    "Documents": {".pdf", ".doc", ".docx", ".txt", ".md", ".rtf", ".xls", ".xlsx", ".ppt", ".pptx"},
-    "Archives": {".zip", ".rar", ".7z", ".tar", ".gz"},
-    "Audio": {".mp3", ".wav", ".aac", ".flac", ".m4a"},
-    "Code": {".py", ".js", ".ts", ".tsx", ".jsx", ".rs", ".go", ".java", ".cpp", ".c", ".html", ".css", ".json", ".yaml", ".yml"},
-    "Installers": {".exe", ".msi", ".dmg", ".pkg", ".deb", ".rpm", ".appimage"},
-}
+CATEGORY_EXTENSIONS = {category: set(extensions) for category, extensions in DEFAULT_CATEGORY_MAP.items()}
+
 
 
 class RuleEngine:
@@ -58,7 +52,7 @@ class RuleEngine:
                 return rule
         return None
 
-    def category_for(self, path: Path, large_threshold_mb: int = 100) -> str:
+    def category_for(self, path: Path, large_threshold_mb: int = 100, category_map: dict[str, list[str]] | None = None) -> str:
         try:
             if path.stat().st_size >= large_threshold_mb * 1024 * 1024:
                 return "Large Files"
@@ -68,7 +62,8 @@ class RuleEngine:
         if matched and matched.action.type == "move" and matched.action.move_to:
             return matched.action.move_to
         suffix = path.suffix.lower()
-        for category, extensions in CATEGORY_EXTENSIONS.items():
+        effective_map = {category: set(extensions) for category, extensions in (category_map or CATEGORY_EXTENSIONS).items()}
+        for category, extensions in effective_map.items():
             if suffix in extensions:
                 return category
         return "Misc"
